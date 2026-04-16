@@ -26,8 +26,8 @@
   <div>
     <a href="/index.html" class="active">Home</a>
     <a href="/about.html">About</a>
+    <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
-    <a href="/play.html" target="_blank">Play</a>
   </div>
   <span style="color:#555">KRALI4</span>
 </div>
@@ -41,7 +41,7 @@
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
     <p>Play</p>
-    <a href="/play.html" target="_blank">Terminal</a>
+    <a href="/index.html#challenge">Start session</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -50,12 +50,12 @@
 
     <h1>KRALI4</h1>
 
-<img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:200px; margin-bottom:14px; filter:grayscale(100%);" />
+    <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:200px; margin-bottom:14px; filter:grayscale(100%);" />
 
-    <p>A series of SSH challenges. Each level hides the password for the next. No account. No install. Just a terminal.</p>
-    <p>Start a session, connect with SSH from your own machine, and work your way through the levels.</p>
+    <p>An SSH wargame. Each level hides a password that unlocks the next user. No account. No install. Just a terminal and persistence.</p>
+    <p>Sessions run in isolated containers — your actions don't affect anyone else's machine.</p>
 
-    <h2>Start a session</h2>
+    <h2 id="challenge">Start a session</h2>
 
     <button id="ch-start-btn">&#x25B6; Start Challenge</button>
 
@@ -66,7 +66,7 @@
         <tr><td>starting password</td><td id="ch-password" style="color:#bbb; padding-left:12px;"></td></tr>
         <tr><td>session expires in</td><td id="ch-countdown" style="color:#888; padding-left:12px;"></td></tr>
       </table>
-      <p style="margin-top:10px; color:#555; font-size:11px;">Each level's password is hidden somewhere on the machine. Find it, SSH in as the next user, repeat.</p>
+      <p style="margin-top:10px; color:#555; font-size:11px;">Passwords for higher levels are hidden somewhere on the machine. Find one, SSH in as the next user, repeat.</p>
       <button id="ch-stop-btn" style="margin-top:8px;">&#x25A0; Stop Session</button>
     </div>
 
@@ -81,7 +81,7 @@
       <tr><td>4 → 5</td><td>Identify the only human-readable file among many</td></tr>
     </table>
 
-    <p class="footer">krali4 · no account, no trace · sessions expire after 2 hours</p>
+    <p class="footer">krali4 · no account, no trace · sessions expire after 2h</p>
 
   </div>
 </div>

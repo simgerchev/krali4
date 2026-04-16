@@ -12,8 +12,8 @@
   <div>
     <a href="/index.html">Home</a>
     <a href="/about.html">About</a>
+    <a href="/stack.html">Stack</a>
     <a href="/changelog.html" class="active">Changelog</a>
-    <a href="/play.html" target="_blank">Play</a>
   </div>
   <span style="color:#555">KRALI4</span>
 </div>
@@ -27,7 +27,7 @@
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html" class="active">Changelog</a>
     <p>Play</p>
-    <a href="/play.html" target="_blank">Terminal</a>
+    <a href="/index.html#challenge">Start session</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -37,78 +37,63 @@
     <h1>Changelog</h1>
 
     <div class="log">
-      <div><span class="ver">v0.8.0</span> <span class="date">2026-04-15</span> <span class="tag latest">[latest]</span></div>
+      <div><span class="ver">v1.0.1</span> <span class="date">2026-04-16</span> <span class="tag latest">[latest]</span></div>
       <ul>
-        <li>homepage redesigned — oldschool two-column layout with sidebar nav</li>
+        <li>all pages rewritten to reflect the SSH wargame platform</li>
+        <li>about page — describes SSH flow, session isolation, no-account policy, how to connect</li>
+        <li>stack page — restructured into Backend / Challenge containers / Infrastructure / Security / Frontend sections</li>
+        <li>changelog — old browser-terminal entries marked archived, v1.0.0 documents platform rebuild</li>
+        <li>navigation — "Play → Terminal" replaced with "Play → Start session" across all pages</li>
+        <li>"Play" tab removed from topbar, nav is now consistent site-wide</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v1.0.0</span> <span class="date">2026-04-16</span> <span class="tag">[minor]</span></div>
+      <ul>
+        <li>platform rebuilt around real SSH — browser terminal removed</li>
+        <li>on-demand containers per session — one isolated machine per player</li>
+        <li>5 Bandit-style levels: file reading, tricky filenames, hidden files, binary vs text</li>
+        <li>passwords generated randomly at container start — no shared answers</li>
+        <li>session launcher on home page — SSH command shown after "Start"</li>
+        <li>2-hour TTL with countdown timer and manual stop</li>
+        <li>FastAPI backend with Docker SDK for container lifecycle management</li>
+        <li>orphan cleanup on backend restart</li>
+        <li>hardened containers: cap_drop ALL, no-new-privileges, resource limits, no egress</li>
+        <li>Kubernetes manifests: RBAC, NetworkPolicy, Pod/NodePort template</li>
+        <li>nginx proxy serves frontend and routes <code>/api/*</code> to backend</li>
+        <li>rate limiting: 3 sessions/hour per IP in production</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.8.0</span> <span class="date">2026-04-15</span> <span class="tag">[archived]</span></div>
+      <ul>
+        <li>homepage redesigned — two-column layout with sidebar nav</li>
         <li>site split into separate pages: about, stack, changelog</li>
-        <li>terminal stripped down — no window chrome, no borders</li>
-        <li>play links open in a new tab</li>
-        <li>mobile optimisation — <code>100dvh</code>, safe-area insets, prompt shortened to <code>$</code> on small screens</li>
-        <li>neofetch and boot screen now use skull art</li>
+        <li>mobile optimisation — <code>100dvh</code>, safe-area insets</li>
+        <li>neofetch and boot screen updated</li>
       </ul>
     </div>
 
     <div class="log">
-      <div><span class="ver">v0.7.0</span> <span class="date">2026-04-11</span> <span class="tag">[minor]</span></div>
+      <div><span class="ver">v0.7.0</span> <span class="date">2026-04-11</span> <span class="tag">[archived]</span></div>
       <ul>
-        <li>new task type: <code>curl_endpoint</code> — use curl to hit a local service</li>
-        <li>procedural <code>.bash_history</code> and <code>notes.txt</code> added to every session</li>
-        <li>filesystem task file generation refactored into per-task builders</li>
-        <li>homepage split into separate pages (about, stack, changelog)</li>
-        <li>sessions.py cleanup — removed unused session state</li>
+        <li>browser terminal: new task type <code>curl_endpoint</code></li>
+        <li>procedural <code>.bash_history</code> and <code>notes.txt</code> per session</li>
+        <li>filesystem task generation refactored into per-task builders</li>
       </ul>
     </div>
 
     <div class="log">
-      <div><span class="ver">v0.6.0</span> <span class="date">2026-04-03</span> <span class="tag">[minor]</span></div>
+      <div><span class="ver">v0.5.0</span> <span class="date">2026-03-23</span> <span class="tag">[archived]</span></div>
       <ul>
-        <li>removed sidebar — terminal is now full-width</li>
-        <li>new challenge via <code>bash tools/new-challenge.sh</code></li>
-        <li><code>neofetch</code> command added</li>
-        <li>braille art in boot sequence</li>
-        <li>terminal output colour changed to grey</li>
+        <li>browser terminal: <code>chown</code> and <code>useradd</code> task types</li>
+        <li><code>sudo -l</code> reveals allowed rules for privilege tasks</li>
       </ul>
     </div>
 
-    <div class="log">
-      <div><span class="ver">v0.5.0</span> <span class="date">2026-03-23</span> <span class="tag">[minor]</span></div>
-      <ul>
-        <li>new task types: <code>chown</code> and <code>useradd</code></li>
-        <li><code>sudo -l</code> reveals allowed rule for privilege tasks</li>
-        <li><code>ls -la</code> shows per-file ownership</li>
-        <li>removed <code>tar_extract</code> task type</li>
-        <li>world gen bug — unhandled task types silently dropped levels</li>
-      </ul>
-    </div>
-
-    <div class="log">
-      <div><span class="ver">v0.4.0</span> <span class="date">2026-03-21</span> <span class="tag">[minor]</span></div>
-      <ul>
-        <li>homepage separated from the terminal</li>
-        <li>navigation bar added</li>
-        <li>switched to monochrome theme</li>
-        <li>release notes section introduced</li>
-      </ul>
-    </div>
-
-    <div class="log">
-      <div><span class="ver">v0.3.1</span> <span class="date">2026-02-14</span> <span class="tag">[patch]</span></div>
-      <ul>
-        <li>session isolation edge case fixed</li>
-        <li>tab autocomplete no longer suggests hidden system paths</li>
-        <li>uptime counter added to terminal header</li>
-      </ul>
-    </div>
-
-    <div class="log">
-      <div><span class="ver">v0.3.0</span> <span class="date">2026-01-30</span> <span class="tag">[minor]</span></div>
-      <ul>
-        <li>command shortcuts sidebar on the play page</li>
-        <li>boot sequence no longer stalls on slow connections</li>
-      </ul>
-    </div>
-
-    <p class="footer">krali4 · no account, no trace, no install · <a href="/play.html" target="_blank">&gt;_ play</a></p>
+    <p class="footer">krali4 · no account, no trace · sessions expire after 2h</p>
 
   </div>
 </div>

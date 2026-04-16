@@ -12,8 +12,8 @@
   <div>
     <a href="/index.html">Home</a>
     <a href="/about.html">About</a>
+    <a href="/stack.html" class="active">Stack</a>
     <a href="/changelog.html">Changelog</a>
-    <a href="/play.html" target="_blank">Play</a>
   </div>
   <span style="color:#555">KRALI4</span>
 </div>
@@ -27,7 +27,7 @@
     <a href="/stack.html" class="active">Stack</a>
     <a href="/changelog.html">Changelog</a>
     <p>Play</p>
-    <a href="/play.html" target="_blank">Terminal</a>
+    <a href="/index.html#challenge">Start session</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -36,18 +36,46 @@
 
     <h1>Stack</h1>
 
+    <h2>Backend</h2>
     <table>
       <tr><td>Python</td><td>core language</td></tr>
-      <tr><td>FastAPI</td><td>API layer</td></tr>
+      <tr><td>FastAPI</td><td>API layer — session create / get / delete</td></tr>
       <tr><td>Uvicorn</td><td>ASGI server</td></tr>
-      <tr><td>Vanilla JS</td><td>frontend runtime</td></tr>
-      <tr><td>Kubernetes</td><td>orchestration</td></tr>
-      <tr><td>GitLab CI</td><td>deployment pipeline</td></tr>
-      <tr><td>Docker</td><td>containerisation</td></tr>
-      <tr><td>HTML / CSS</td><td>UI — no frameworks</td></tr>
+      <tr><td>Docker SDK</td><td>spawns and destroys challenge containers at runtime</td></tr>
     </table>
 
-    <p class="footer">krali4 · no account, no trace, no install · <a href="/play.html" target="_blank">&gt;_ play</a></p>
+    <h2>Challenge containers</h2>
+    <table>
+      <tr><td>Ubuntu 22.04</td><td>base image</td></tr>
+      <tr><td>OpenSSH server</td><td>SSH access on port 22</td></tr>
+      <tr><td>Linux users</td><td>level0 – level5, each with a separate home directory</td></tr>
+      <tr><td>Random passwords</td><td>generated fresh on every container start</td></tr>
+    </table>
+
+    <h2>Infrastructure</h2>
+    <table>
+      <tr><td>Docker</td><td>local development — containers spawned on demand</td></tr>
+      <tr><td>Kubernetes</td><td>production — Pod + NodePort Service per session</td></tr>
+      <tr><td>nginx</td><td>serves the frontend, proxies <code>/api/*</code> to the backend</td></tr>
+    </table>
+
+    <h2>Security controls</h2>
+    <table>
+      <tr><td>cap_drop ALL</td><td>all Linux capabilities dropped, only required ones added back</td></tr>
+      <tr><td>no-new-privileges</td><td>processes can't escalate beyond their starting privileges</td></tr>
+      <tr><td>resource limits</td><td>0.5 CPU · 128 MB RAM · 100 PIDs per container</td></tr>
+      <tr><td>network isolation</td><td>no egress — containers can't reach the internet</td></tr>
+      <tr><td>session TTL</td><td>containers auto-deleted after 2 hours</td></tr>
+      <tr><td>rate limiting</td><td>max sessions per IP enforced on the API</td></tr>
+    </table>
+
+    <h2>Frontend</h2>
+    <table>
+      <tr><td>Vanilla JS</td><td>no frameworks</td></tr>
+      <tr><td>HTML / CSS</td><td>monospace, dark theme</td></tr>
+    </table>
+
+    <p class="footer">krali4 · no account, no trace · sessions expire after 2h</p>
 
   </div>
 </div>
