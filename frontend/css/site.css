@@ -1,0 +1,90 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: #cccccc;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  margin: 0;
+}
+
+a { color: #8ab4d4; }
+
+#topbar {
+  background: #000;
+  border-bottom: 1px solid #333;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+#topbar a { color: #aaa; margin-right: 14px; text-decoration: none; }
+#topbar a:hover { text-decoration: underline; }
+#topbar a.active { color: #fff; }
+
+#wrap { display: flex; }
+
+#sidebar {
+  width: 140px;
+  min-width: 140px;
+  padding: 12px;
+  border-right: 1px solid #2a2a2a;
+  flex-shrink: 0;
+}
+
+#sidebar p { color: #555; margin: 14px 0 2px; font-size: 11px; }
+#sidebar a { display: block; color: #999; text-decoration: none; line-height: 1.8; }
+#sidebar a:hover { text-decoration: underline; }
+#sidebar a.active { color: #ccc; }
+
+#main {
+  padding: 20px 24px;
+  max-width: 660px;
+  min-width: 0;
+}
+
+h1 { font-size: 18px; font-weight: normal; color: #ddd; margin: 0 0 12px; }
+h2 { font-size: 13px; font-weight: normal; color: #bbb; margin: 24px 0 8px; border-bottom: 1px solid #2a2a2a; padding-bottom: 4px; }
+
+p { color: #aaa; margin: 0 0 8px; line-height: 1.6; }
+
+pre { color: #3a3a3a; font-size: 11px; line-height: 1.2; margin: 0 0 14px; overflow-x: auto; }
+
+table { border-collapse: collapse; width: 100%; }
+td { padding: 4px 8px 4px 0; color: #999; vertical-align: top; }
+td:first-child { color: #777; white-space: nowrap; }
+
+ul { margin: 0; padding: 0 0 0 16px; color: #888; }
+li { line-height: 1.7; font-size: 12px; }
+
+.ver { color: #33dd33; }
+.tag { color: #aa6622; font-size: 11px; }
+.tag.latest { color: #33dd33; }
+.date { color: #555; }
+
+.log { margin-bottom: 16px; }
+
+code { color: #bbb; }
+
+.footer { color: #444; font-size: 11px; margin-top: 24px; }
+
+/* ── MOBILE ── */
+@media (max-width: 540px) {
+  #sidebar { display: none; }
+
+  #main { padding: 14px 14px 40px; }
+
+  #topbar { padding: 8px 12px; }
+  #topbar a { margin-right: 10px; font-size: 12px; }
+
+  h1 { font-size: 16px; }
+
+  table { display: block; }
+  td { display: block; padding: 1px 0; }
+  td:first-child { color: #555; font-size: 11px; margin-top: 8px; }
+
+  img { width: 100% !important; max-width: 260px; }
+}

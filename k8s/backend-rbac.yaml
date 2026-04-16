@@ -1,0 +1,30 @@
+# The backend needs to create/delete Pods and Services for each session.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: krali4-backend
+  namespace: krali4
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: krali4-session-manager
+  namespace: krali4
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services"]
+    verbs: ["create", "get", "list", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: krali4-backend-binding
+  namespace: krali4
+subjects:
+  - kind: ServiceAccount
+    name: krali4-backend
+    namespace: krali4
+roleRef:
+  kind: Role
+  name: krali4-session-manager
+  apiGroup: rbac.authorization.k8s.io

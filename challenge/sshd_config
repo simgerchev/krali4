@@ -1,0 +1,26 @@
+Port 22
+PermitRootLogin no
+PasswordAuthentication yes
+PubkeyAuthentication no
+UsePAM no
+X11Forwarding no
+AllowTcpForwarding no
+GatewayPorts no
+PermitTunnel no
+
+# Limit resource usage per connection
+MaxSessions 2
+MaxStartups 10:30:60
+LoginGraceTime 20
+
+# Keep connections alive, drop idle ones after 10 min
+ClientAliveInterval 60
+ClientAliveCountMax 10
+
+# Restrict what users can do
+PermitUserEnvironment no
+PrintMotd yes
+Banner /etc/ssh/banner
+
+# Only allow level users
+AllowUsers level0 level1 level2 level3 level4 level5

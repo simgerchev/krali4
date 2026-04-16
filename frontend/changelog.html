@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KRALI4 — Changelog</title>
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+
+<div id="topbar">
+  <div>
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/changelog.html" class="active">Changelog</a>
+    <a href="/play.html" target="_blank">Play</a>
+  </div>
+  <span style="color:#555">KRALI4</span>
+</div>
+
+<div id="wrap">
+
+  <div id="sidebar">
+    <p>Pages</p>
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/stack.html">Stack</a>
+    <a href="/changelog.html" class="active">Changelog</a>
+    <p>Play</p>
+    <a href="/play.html" target="_blank">Terminal</a>
+    <p>Status</p>
+    <a href="#" style="color:#33dd33">● online</a>
+  </div>
+
+  <div id="main">
+
+    <h1>Changelog</h1>
+
+    <div class="log">
+      <div><span class="ver">v0.8.0</span> <span class="date">2026-04-15</span> <span class="tag latest">[latest]</span></div>
+      <ul>
+        <li>homepage redesigned — oldschool two-column layout with sidebar nav</li>
+        <li>site split into separate pages: about, stack, changelog</li>
+        <li>terminal stripped down — no window chrome, no borders</li>
+        <li>play links open in a new tab</li>
+        <li>mobile optimisation — <code>100dvh</code>, safe-area insets, prompt shortened to <code>$</code> on small screens</li>
+        <li>neofetch and boot screen now use skull art</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.7.0</span> <span class="date">2026-04-11</span> <span class="tag">[minor]</span></div>
+      <ul>
+        <li>new task type: <code>curl_endpoint</code> — use curl to hit a local service</li>
+        <li>procedural <code>.bash_history</code> and <code>notes.txt</code> added to every session</li>
+        <li>filesystem task file generation refactored into per-task builders</li>
+        <li>homepage split into separate pages (about, stack, changelog)</li>
+        <li>sessions.py cleanup — removed unused session state</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.6.0</span> <span class="date">2026-04-03</span> <span class="tag">[minor]</span></div>
+      <ul>
+        <li>removed sidebar — terminal is now full-width</li>
+        <li>new challenge via <code>bash tools/new-challenge.sh</code></li>
+        <li><code>neofetch</code> command added</li>
+        <li>braille art in boot sequence</li>
+        <li>terminal output colour changed to grey</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.5.0</span> <span class="date">2026-03-23</span> <span class="tag">[minor]</span></div>
+      <ul>
+        <li>new task types: <code>chown</code> and <code>useradd</code></li>
+        <li><code>sudo -l</code> reveals allowed rule for privilege tasks</li>
+        <li><code>ls -la</code> shows per-file ownership</li>
+        <li>removed <code>tar_extract</code> task type</li>
+        <li>world gen bug — unhandled task types silently dropped levels</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.4.0</span> <span class="date">2026-03-21</span> <span class="tag">[minor]</span></div>
+      <ul>
+        <li>homepage separated from the terminal</li>
+        <li>navigation bar added</li>
+        <li>switched to monochrome theme</li>
+        <li>release notes section introduced</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.3.1</span> <span class="date">2026-02-14</span> <span class="tag">[patch]</span></div>
+      <ul>
+        <li>session isolation edge case fixed</li>
+        <li>tab autocomplete no longer suggests hidden system paths</li>
+        <li>uptime counter added to terminal header</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v0.3.0</span> <span class="date">2026-01-30</span> <span class="tag">[minor]</span></div>
+      <ul>
+        <li>command shortcuts sidebar on the play page</li>
+        <li>boot sequence no longer stalls on slow connections</li>
+      </ul>
+    </div>
+
+    <p class="footer">krali4 · no account, no trace, no install · <a href="/play.html" target="_blank">&gt;_ play</a></p>
+
+  </div>
+</div>
+
+</body>
+</html>

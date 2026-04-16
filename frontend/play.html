@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>krali4</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+
+  <div id="topbar">
+    <span id="promptPreview">krali4@unknown:~$</span>
+    <span id="connectionBadge" data-connected="false">disconnected</span>
+    <span id="connectionMeta"></span>
+    <span id="connectionUptime"></span>
+  </div>
+
+  <div id="terminalOutput" aria-live="polite"></div>
+
+  <form id="commandForm" autocomplete="off">
+    <label id="promptLabel" for="commandInput">krali4@unknown:~$</label>
+    <input id="commandInput" name="command" type="text" spellcheck="false" autofocus />
+  </form>
+
+  <div id="statusBar">
+    <span id="statusText">waiting for session...</span>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

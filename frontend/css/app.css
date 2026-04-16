@@ -1,0 +1,138 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  color: #bbb;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  overflow: hidden;
+  overscroll-behavior: none;
+  display: flex;
+  flex-direction: column;
+  /* account for iOS notch / home bar */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ── TOP BAR ── */
+#topbar {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-bottom: 1px solid #222;
+  color: #444;
+  font-size: 12px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+#topbar #promptPreview { color: #33dd33; }
+
+#connectionBadge { color: #555; }
+#connectionBadge[data-connected="true"] { color: #33dd33; }
+
+#connectionMeta, #connectionUptime { color: #444; }
+
+/* ── OUTPUT ── */
+#terminalOutput {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* entries written by ui.js */
+.entry {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.35;
+  color: #bbb;
+}
+
+.entry.command { color: #eee; }
+.entry.error   { color: #cc4444; }
+.entry.system  { color: #bbb; }
+
+.entry a { color: #8ab4d4; }
+
+.prompt {
+  color: #33dd33;
+  margin-right: 6px;
+}
+
+/* ── INPUT FORM ── */
+#commandForm {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-top: 1px solid #222;
+  gap: 6px;
+}
+
+#promptLabel {
+  color: #33dd33;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#commandInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ccc;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  caret-color: #33dd33;
+}
+
+/* ── STATUS BAR ── */
+#statusBar {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-top: 1px solid #1a1a1a;
+  color: #333;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#statusBar a { color: #444; text-decoration: none; }
+#statusBar a:hover { text-decoration: underline; }
+
+#statusText { color: #444; }
+
+/* ── SCROLLBAR ── */
+#terminalOutput::-webkit-scrollbar { width: 6px; }
+#terminalOutput::-webkit-scrollbar-track { background: #000; }
+#terminalOutput::-webkit-scrollbar-thumb { background: #222; }
+
+/* ── MOBILE ── */
+@media (max-width: 540px) {
+  /* use dynamic viewport height so the input stays visible when keyboard opens */
+  body { height: 100dvh; }
+
+  #topbar { gap: 6px; font-size: 11px; }
+  /* hide the less important topbar items to save space */
+  #connectionMeta, #connectionUptime { display: none; }
+
+  /* larger font prevents iOS auto-zoom on focus */
+  #commandInput { font-size: 16px; }
+
+  /* bigger tap target for the input row */
+  #commandForm { padding: 10px; }
+
+  /* shorten prompt to just $ to give the input more room */
+  #promptLabel { font-size: 0; }
+  #promptLabel::after { content: "$"; font-size: 16px; color: #33dd33; }
+
+  .entry { font-size: 12px; line-height: 1.4; }
+}
