@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: krali4-challenge
+  namespace: __NAMESPACE__
+spec:
+  podSelector:
+    matchLabels:
+      app: krali4-challenge
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - ports:
+        - port: 22
+          protocol: TCP
+  egress: []
