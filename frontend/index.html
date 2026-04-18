@@ -5,20 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KRALI4</title>
   <link rel="stylesheet" href="css/site.css" />
-  <style>
-    button {
-      background: #111;
-      color: #33dd33;
-      border: 1px solid #33dd33;
-      padding: 6px 14px;
-      font-family: "Courier New", monospace;
-      font-size: 12px;
-      cursor: pointer;
-    }
-    button:hover { background: #1a2a1a; }
-    button:disabled { opacity: 0.4; cursor: default; }
-    button + button { margin-left: 8px; }
-  </style>
 </head>
 <body>
 
@@ -41,7 +27,7 @@
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
     <p>Play</p>
-    <a href="/index.html#challenge">Start session</a>
+    <a href="/index.html#connect">How to connect</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -53,24 +39,20 @@
     <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:200px; margin-bottom:14px; filter:grayscale(100%);" />
 
     <p>An SSH wargame. Each level hides a password that unlocks the next user. No account. No install. Just a terminal and persistence.</p>
-    <p>Sessions run in isolated containers — your actions don't affect anyone else's machine.</p>
 
-    <h2 id="challenge">Start a session</h2>
+    <h2 id="connect">How to connect</h2>
 
-    <button id="ch-start-btn">&#x25B6; Start Challenge</button>
+    <p style="color:#888; margin-bottom:6px;">Open a terminal and run:</p>
+    <pre id="connect-cmd" style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px; user-select:all;"></pre>
 
-    <div id="ch-info" style="display:none; margin-top:14px;">
-      <p style="color:#888; margin-bottom:6px;">Connect with:</p>
-      <pre id="ch-cmd" style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px; user-select:all;"></pre>
-      <table style="margin-top:8px;">
-        <tr><td>starting password</td><td id="ch-password" style="color:#bbb; padding-left:12px;"></td></tr>
-        <tr><td>session expires in</td><td id="ch-countdown" style="color:#888; padding-left:12px;"></td></tr>
-      </table>
-      <p style="margin-top:10px; color:#555; font-size:11px;">Passwords for higher levels are hidden somewhere on the machine. Find one, SSH in as the next user, repeat.</p>
-      <button id="ch-stop-btn" style="margin-top:8px;">&#x25A0; Stop Session</button>
-    </div>
+    <table style="margin-top:8px;">
+      <tr><td>host</td><td id="connect-host" style="color:#bbb; padding-left:12px;"></td></tr>
+      <tr><td>port</td><td style="color:#bbb; padding-left:12px;">2222</td></tr>
+      <tr><td>username</td><td style="color:#bbb; padding-left:12px;">level0</td></tr>
+      <tr><td>password</td><td style="color:#bbb; padding-left:12px;">level0</td></tr>
+    </table>
 
-    <p id="ch-status" style="color:#555; margin-top:8px; font-size:12px;"></p>
+    <p style="margin-top:10px; color:#555; font-size:11px;">Passwords for higher levels are hidden on the machine. Find one, SSH in as the next user, repeat.</p>
 
     <h2>Levels</h2>
     <table>
@@ -81,11 +63,15 @@
       <tr><td>4 → 5</td><td>Identify the only human-readable file among many</td></tr>
     </table>
 
-    <p class="footer">krali4 · no account, no trace · sessions expire after 2h</p>
+    <p class="footer">krali4 · no account, no trace · server is always on</p>
 
   </div>
 </div>
 
-<script type="module" src="js/challenge.js"></script>
+<script>
+  const host = window.location.hostname || 'localhost';
+  document.getElementById('connect-host').textContent = host;
+  document.getElementById('connect-cmd').textContent = `ssh level0@${host} -p 2222`;
+</script>
 </body>
 </html>

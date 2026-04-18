@@ -1,0 +1,88 @@
+stages:
+  - build
+  - deploy
+
+default:
+  tags:
+    - docker
+    - linux
+
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
+  IMAGE_FRONTEND: "$CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHA"
+  IMAGE_CHALLENGE: "$CI_REGISTRY_IMAGE/challenge:$CI_COMMIT_SHA"
+  K8S_NAMESPACE: "krali4"
+  K8S_INGRESS_HOST: ""
+
+.build:
+  stage: build
+  image: docker:27.1.1
+  services:
+    - name: docker:27.1.1-dind
+      command: ["--tls=true"]
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login "$CI_REGISTRY" -u "$CI_REGISTRY_USER" --password-stdin
+
+build_frontend:
+  extends: .build
+  script:
+    - docker build -t "$IMAGE_FRONTEND" -t "$CI_REGISTRY_IMAGE/frontend:latest" ./frontend
+    - docker push "$IMAGE_FRONTEND"
+    - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
+
+build_challenge:
+  extends: .build
+  script:
+    - docker build -t "$IMAGE_CHALLENGE" -t "$CI_REGISTRY_IMAGE/challenge:latest" ./challenge
+    - docker push "$IMAGE_CHALLENGE"
+    - docker push "$CI_REGISTRY_IMAGE/challenge:latest"
+
+deploy_k8s:
+  stage: deploy
+  tags:
+    - shell
+    - deploy
+  needs:
+    - job: build_frontend
+    - job: build_challenge
+  before_script:
+    - command -v kubectl >/dev/null 2>&1 || { echo "kubectl not found on runner"; exit 1; }
+    - |
+      if [ -n "$KUBE_CONFIG" ]; then
+        mkdir -p "$HOME/.kube"
+        echo "$KUBE_CONFIG" | base64 -d > "$HOME/.kube/config"
+      elif [ -r /etc/rancher/k3s/k3s.yaml ]; then
+        mkdir -p "$HOME/.kube"
+        cp /etc/rancher/k3s/k3s.yaml "$HOME/.kube/config"
+      else
+        echo "No kubeconfig found. Set KUBE_CONFIG or grant access to /etc/rancher/k3s/k3s.yaml."
+        exit 1
+      fi
+      chmod 600 "$HOME/.kube/config"
+      export KUBECONFIG="$HOME/.kube/config"
+    - kubectl config set-cluster $(kubectl config view -o jsonpath='{.clusters[0].name}') --insecure-skip-tls-verify=true
+  script:
+    - kubectl create namespace "$K8S_NAMESPACE" --dry-run=client -o yaml | kubectl apply --validate=false -f -
+    - kubectl -n "$K8S_NAMESPACE" create secret docker-registry gitlab-registry
+        --docker-server="$CI_REGISTRY"
+        --docker-username="$CI_REGISTRY_USER"
+        --docker-password="$CI_REGISTRY_PASSWORD"
+        --dry-run=client -o yaml | kubectl apply --validate=false -f -
+    - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
+          -e "s|__IMAGE_FRONTEND__|$IMAGE_FRONTEND|g"
+          -e "s|__IMAGE_CHALLENGE__|$IMAGE_CHALLENGE|g"
+          k8s/deployment.yaml | kubectl apply --validate=false -f -
+    - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
+          k8s/service.yaml | kubectl apply --validate=false -f -
+    - |
+      if [ -n "$K8S_INGRESS_HOST" ]; then
+        sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g" \
+            -e "s|__INGRESS_HOST__|$K8S_INGRESS_HOST|g" \
+            k8s/ingress.yaml | kubectl apply --validate=false -f -
+      else
+        echo "Skipping ingress: K8S_INGRESS_HOST is not set."
+      fi
+    - kubectl -n "$K8S_NAMESPACE" rollout status deploy/krali4-frontend --timeout=180s
+    - kubectl -n "$K8S_NAMESPACE" rollout status deploy/krali4-challenge --timeout=180s
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
