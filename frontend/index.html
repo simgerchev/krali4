@@ -47,7 +47,7 @@
 
     <table style="margin-top:8px;">
       <tr><td>host</td><td id="connect-host" style="color:#bbb; padding-left:12px;"></td></tr>
-      <tr><td>port</td><td style="color:#bbb; padding-left:12px;">2222</td></tr>
+      <tr><td>port</td><td style="color:#bbb; padding-left:12px;">30022</td></tr>
       <tr><td>username</td><td style="color:#bbb; padding-left:12px;">level0</td></tr>
       <tr><td>password</td><td style="color:#bbb; padding-left:12px;">level0</td></tr>
     </table>
@@ -69,9 +69,10 @@
 </div>
 
 <script>
-  const host = window.location.hostname || 'localhost';
+  const host = '217.154.8.251';
+  const port = 30022;
   document.getElementById('connect-host').textContent = host;
-  document.getElementById('connect-cmd').textContent = `ssh level0@${host} -p 2222`;
+  document.getElementById('connect-cmd').textContent = `ssh level0@${host} -p ${port}`;
 </script>
 </body>
 </html>
