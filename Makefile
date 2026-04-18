@@ -2,7 +2,7 @@
 
 build:
 	docker compose build
-	docker build -t krali4-frontend ./frontend
+	docker build -f frontend/Dockerfile -t krali4-frontend .
 
 up: build
 	docker compose up -d

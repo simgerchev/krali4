@@ -26,7 +26,7 @@ variables:
 build_frontend:
   extends: .build
   script:
-    - docker build -t "$IMAGE_FRONTEND" -t "$CI_REGISTRY_IMAGE/frontend:latest" ./frontend
+    - docker build -f frontend/Dockerfile -t "$IMAGE_FRONTEND" -t "$CI_REGISTRY_IMAGE/frontend:latest" .
     - docker push "$IMAGE_FRONTEND"
     - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
 
