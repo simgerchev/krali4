@@ -10,7 +10,7 @@ default:
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
   IMAGE_FRONTEND: "$CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHA"
-  IMAGE_CHALLENGE: "$CI_REGISTRY_IMAGE/challenge:$CI_COMMIT_SHA"
+  IMAGE_THIEF: "$CI_REGISTRY_IMAGE/thief:$CI_COMMIT_SHA"
   K8S_NAMESPACE: "krali4"
   K8S_INGRESS_HOST: ""
 
@@ -30,12 +30,12 @@ build_frontend:
     - docker push "$IMAGE_FRONTEND"
     - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
 
-build_challenge:
+build_thief:
   extends: .build
   script:
-    - docker build -t "$IMAGE_CHALLENGE" -t "$CI_REGISTRY_IMAGE/challenge:latest" ./challenge
-    - docker push "$IMAGE_CHALLENGE"
-    - docker push "$CI_REGISTRY_IMAGE/challenge:latest"
+    - docker build -t "$IMAGE_THIEF" -t "$CI_REGISTRY_IMAGE/thief:latest" ./games/thief
+    - docker push "$IMAGE_THIEF"
+    - docker push "$CI_REGISTRY_IMAGE/thief:latest"
 
 deploy_k8s:
   stage: deploy
@@ -44,7 +44,7 @@ deploy_k8s:
     - deploy
   needs:
     - job: build_frontend
-    - job: build_challenge
+    - job: build_thief
   before_script:
     - command -v kubectl >/dev/null 2>&1 || { echo "kubectl not found on runner"; exit 1; }
     - |
@@ -70,12 +70,16 @@ deploy_k8s:
         --dry-run=client -o yaml | kubectl apply --validate=false -f -
     - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
           -e "s|__IMAGE_FRONTEND__|$IMAGE_FRONTEND|g"
-          -e "s|__IMAGE_CHALLENGE__|$IMAGE_CHALLENGE|g"
           k8s/deployment.yaml | kubectl apply --validate=false -f -
     - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
           k8s/service.yaml | kubectl apply --validate=false -f -
     - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
-          k8s/network-policy.yaml | kubectl apply --validate=false -f -
+          -e "s|__IMAGE_THIEF__|$IMAGE_THIEF|g"
+          games/thief/k8s/deployment.yaml | kubectl apply --validate=false -f -
+    - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
+          games/thief/k8s/service.yaml | kubectl apply --validate=false -f -
+    - sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g"
+          games/thief/k8s/network-policy.yaml | kubectl apply --validate=false -f -
     - |
       if [ -n "$K8S_INGRESS_HOST" ]; then
         sed -e "s|__NAMESPACE__|$K8S_NAMESPACE|g" \
@@ -85,6 +89,6 @@ deploy_k8s:
         echo "Skipping ingress: K8S_INGRESS_HOST is not set."
       fi
     - kubectl -n "$K8S_NAMESPACE" rollout status deploy/krali4-frontend --timeout=180s
-    - kubectl -n "$K8S_NAMESPACE" rollout status deploy/krali4-challenge --timeout=180s
+    - kubectl -n "$K8S_NAMESPACE" rollout status deploy/krali4-thief --timeout=180s
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

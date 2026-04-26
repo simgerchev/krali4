@@ -12,6 +12,7 @@
   <div>
     <a href="/index.html">Home</a>
     <a href="/about.html" class="active">About</a>
+    <a href="/games/thief.html">Games</a>
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
   </div>
@@ -26,8 +27,8 @@
     <a href="/about.html" class="active">About</a>
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
-    <p>Play</p>
-    <a href="/index.html#connect">How to connect</a>
+    <p>Games</p>
+    <a href="/games/thief.html">Thief</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -38,7 +39,7 @@
 
     <table>
       <tr><td>what_it_is</td><td>An SSH wargame. You connect to a real Linux machine, find a hidden password, and use it to log in as the next user. Repeat until done.</td></tr>
-      <tr><td>how_it_works</td><td>SSH in as level0 with password <code>level0</code>. Each level has a clue that leads to the next level's password. Find it, move on.</td></tr>
+      <tr><td>how_it_works</td><td>SSH in as thief0 with password <code>thief0</code>. Each level has a clue that leads to the next level's password. Find it, move on.</td></tr>
       <tr><td>who_its_for</td><td>People learning Linux, command-line navigation, and basic security concepts. No prior experience required — just curiosity and a terminal.</td></tr>
       <tr><td>shared_server</td><td>Everyone connects to the same machine. Passwords are randomised on every server restart so answers can't be shared. Your actions don't affect other players' files.</td></tr>
       <tr><td>no_account</td><td>No registration, no tracking. Just SSH in and start playing.</td></tr>
@@ -46,8 +47,8 @@
 
     <h2>How to connect</h2>
     <p>You need an SSH client. On Linux and macOS it's built in. On Windows, use PowerShell, Windows Terminal, or PuTTY.</p>
-    <pre style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px;">ssh level0@217.154.8.251 -p 30022</pre>
-    <p>The starting password is <code>level0</code>. Everything after that you find yourself.</p>
+    <pre style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px;">ssh thief0@217.154.8.251 -p 30022</pre>
+    <p>The starting password is <code>thief0</code>. Everything after that you find yourself.</p>
 
     <p class="footer">krali4 · no account, no trace · server is always on</p>
 

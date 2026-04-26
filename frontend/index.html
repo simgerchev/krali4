@@ -12,6 +12,7 @@
   <div>
     <a href="/index.html" class="active">Home</a>
     <a href="/about.html">About</a>
+    <a href="/games/thief.html">Games</a>
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
   </div>
@@ -26,8 +27,8 @@
     <a href="/about.html">About</a>
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
-    <p>Play</p>
-    <a href="/index.html#connect">How to connect</a>
+    <p>Games</p>
+    <a href="/games/thief.html">Thief</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -38,30 +39,29 @@
 
     <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:200px; margin-bottom:14px; filter:grayscale(100%);" />
 
-    <p>An SSH wargame. Each level hides a password that unlocks the next user. No account. No install. Just a terminal and persistence.</p>
+    <p>An SSH wargame platform. Each game is a self-contained series of levels — connect via SSH, find a hidden password, unlock the next user, repeat.</p>
+
+    <h2>Games</h2>
+    <table>
+      <tr>
+        <td><a href="/games/thief.html">Thief</a></td>
+        <td>5 levels · Linux file navigation · find hidden passwords across the filesystem</td>
+      </tr>
+    </table>
 
     <h2 id="connect">How to connect</h2>
 
-    <p style="color:#888; margin-bottom:6px;">Open a terminal and run:</p>
+    <p style="color:#888; margin-bottom:6px;">Pick a game, then open a terminal and SSH in as the first user:</p>
     <pre id="connect-cmd" style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px; user-select:all;"></pre>
 
     <table style="margin-top:8px;">
       <tr><td>host</td><td id="connect-host" style="color:#bbb; padding-left:12px;"></td></tr>
       <tr><td>port</td><td style="color:#bbb; padding-left:12px;">30022</td></tr>
-      <tr><td>username</td><td style="color:#bbb; padding-left:12px;">level0</td></tr>
-      <tr><td>password</td><td style="color:#bbb; padding-left:12px;">level0</td></tr>
+      <tr><td>username</td><td style="color:#bbb; padding-left:12px;">thief0</td></tr>
+      <tr><td>password</td><td style="color:#bbb; padding-left:12px;">thief0</td></tr>
     </table>
 
     <p style="margin-top:10px; color:#555; font-size:11px;">Passwords for higher levels are hidden on the machine. Find one, SSH in as the next user, repeat.</p>
-
-    <h2>Levels</h2>
-    <table>
-      <tr><td>0 → 1</td><td>Read a file in the home directory</td></tr>
-      <tr><td>1 → 2</td><td>Read a file with an unusual name</td></tr>
-      <tr><td>2 → 3</td><td>Read a file with spaces in its name</td></tr>
-      <tr><td>3 → 4</td><td>Find a hidden file inside a directory</td></tr>
-      <tr><td>4 → 5</td><td>Identify the only human-readable file among many</td></tr>
-    </table>
 
     <p class="footer">krali4 · no account, no trace · server is always on</p>
 
@@ -72,7 +72,7 @@
   const host = '217.154.8.251';
   const port = 30022;
   document.getElementById('connect-host').textContent = host;
-  document.getElementById('connect-cmd').textContent = `ssh level0@${host} -p ${port}`;
+  document.getElementById('connect-cmd').textContent = `ssh thief0@${host} -p ${port}`;
 </script>
 </body>
 </html>

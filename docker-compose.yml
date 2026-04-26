@@ -1,7 +1,6 @@
 services:
-
-  challenge:
-    build: ./challenge
+  thief:
+    build: ./games/thief
     ports:
       - "2222:22"
     restart: unless-stopped

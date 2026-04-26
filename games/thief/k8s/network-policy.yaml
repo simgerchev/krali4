@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: krali4-challenge
+  name: krali4-thief
   namespace: __NAMESPACE__
 spec:
   podSelector:
     matchLabels:
-      app: krali4-challenge
+      app: krali4-thief
   policyTypes:
     - Ingress
     - Egress

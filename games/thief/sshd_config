@@ -22,5 +22,5 @@ PermitUserEnvironment no
 PrintMotd yes
 Banner /etc/ssh/banner
 
-# Only allow level users
-AllowUsers level0 level1 level2 level3 level4 level5
+# Only allow thief users
+AllowUsers thief0 thief1 thief2 thief3 thief4 thief5

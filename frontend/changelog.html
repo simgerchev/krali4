@@ -12,6 +12,7 @@
   <div>
     <a href="/index.html">Home</a>
     <a href="/about.html">About</a>
+    <a href="/games/thief.html">Games</a>
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html" class="active">Changelog</a>
   </div>
@@ -26,8 +27,8 @@
     <a href="/about.html">About</a>
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html" class="active">Changelog</a>
-    <p>Play</p>
-    <a href="/index.html#connect">How to connect</a>
+    <p>Games</p>
+    <a href="/games/thief.html">Thief</a>
     <p>Status</p>
     <a href="#" style="color:#33dd33">● online</a>
   </div>
@@ -37,7 +38,20 @@
     <h1>Changelog</h1>
 
     <div class="log">
-      <div><span class="ver">v1.2.0</span> <span class="date">2026-04-18</span> <span class="tag latest">[latest]</span></div>
+      <div><span class="ver">v1.3.0</span> <span class="date">2026-04-26</span> <span class="tag latest">[latest]</span></div>
+      <ul>
+        <li>challenges restructured into named games — first game: <strong>Thief</strong></li>
+        <li>each game is fully self-contained under <code>games/&lt;name&gt;/</code> with its own Dockerfile, entrypoint, sshd_config, levels, and k8s manifests</li>
+        <li>SSH users renamed from <code>level0–level5</code> to <code>thief0–thief5</code></li>
+        <li>dedicated frontend page per game (<code>/games/thief.html</code>) with intro, connection instructions, and level list</li>
+        <li>root <code>k8s/</code> now frontend-only — game k8s manifests live inside each game directory</li>
+        <li>CI pipeline updated — separate build job per game, deploy applies per-game manifests</li>
+        <li>Games nav added to all pages</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v1.2.0</span> <span class="date">2026-04-18</span> <span class="tag">[minor]</span></div>
       <ul>
         <li>always-on server — no more per-session container spawning</li>
         <li>one shared challenge container running continuously</li>

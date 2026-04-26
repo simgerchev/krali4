@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krali4-thief
+  namespace: __NAMESPACE__
+  labels:
+    app: krali4-thief
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krali4-thief
+  template:
+    metadata:
+      labels:
+        app: krali4-thief
+    spec:
+      imagePullSecrets:
+        - name: gitlab-registry
+      containers:
+        - name: krali4-thief
+          image: __IMAGE_THIEF__
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 22
+          readinessProbe:
+            tcpSocket:
+              port: 22
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 22
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+              add: [SETUID, SETGID, CHOWN, DAC_OVERRIDE, NET_BIND_SERVICE, SYS_CHROOT, AUDIT_WRITE]
