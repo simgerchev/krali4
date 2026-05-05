@@ -15,7 +15,7 @@ for d in $(seq 1 10); do
 done
 
 TARGET="maybehere$((RANDOM % 10 + 1))"
-{ echo "$NEXT_PASS"; head -c 1100 /dev/zero | tr '\0' 'x'; echo; } \
+{ head -c 1100 /dev/zero | tr '\0' 'x'; printf '\n%s\n' "$NEXT_PASS"; } \
     > "/home/thief6/inhere/$TARGET/file07"
 
 chown -R root:thief6 /home/thief6/inhere
@@ -26,8 +26,9 @@ cat > /home/thief6/.motd << 'EOF'
 Thief 6 → 7
 -----------
 The password is in 'inhere/' — 10 subdirectories, ~200 files, almost all binary.
-Find the only human-readable file larger than 1033 bytes.
+Find the only human-readable file larger than 1033 bytes. The password is on the last line.
 Hint: find inhere/ -type f -size +1033c
+      then: cat <file>   or   tail -1 <file>
 EOF
 chown root:thief6 /home/thief6/.motd
 chmod 044 /home/thief6/.motd

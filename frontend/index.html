@@ -16,7 +16,7 @@
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
   </div>
-  <span style="color:#555">KRALI4</span>
+  <span class="topbar-logo">KRALI4</span>
 </div>
 
 <div id="wrap">
@@ -35,7 +35,7 @@
 
   <div id="main">
 
-    <h1>KRALI4</h1>
+    <h1>KRALI4<span class="cursor"></span></h1>
 
     <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:200px; margin-bottom:14px; filter:grayscale(100%);" />
 
@@ -52,7 +52,10 @@
     <h2 id="connect">How to connect</h2>
 
     <p style="color:#888; margin-bottom:6px;">Pick a game, then open a terminal and SSH in as the first user:</p>
-    <pre id="connect-cmd" style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px; user-select:all;"></pre>
+    <div class="cmd-wrap">
+      <pre id="connect-cmd" class="cmd-box"></pre>
+      <span class="copy-hint">click to copy</span>
+    </div>
 
     <table style="margin-top:8px;">
       <tr><td>host</td><td id="connect-host" style="color:#bbb; padding-left:12px;"></td></tr>
@@ -73,6 +76,18 @@
   const port = 30022;
   document.getElementById('connect-host').textContent = host;
   document.getElementById('connect-cmd').textContent = `ssh thief0@${host} -p ${port}`;
+
+  document.querySelectorAll('.cmd-box').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var hint = this.parentElement.querySelector('.copy-hint');
+      navigator.clipboard.writeText(this.textContent.trim()).then(function() {
+        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#33dd33'; }
+        setTimeout(function() {
+          if (hint) { hint.textContent = 'click to copy'; hint.style.color = ''; }
+        }, 1500);
+      });
+    });
+  });
 </script>
 </body>
 </html>

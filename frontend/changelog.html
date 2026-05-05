@@ -16,7 +16,7 @@
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html" class="active">Changelog</a>
   </div>
-  <span style="color:#555">KRALI4</span>
+  <span class="topbar-logo">KRALI4</span>
 </div>
 
 <div id="wrap">
@@ -38,7 +38,20 @@
     <h1>Changelog</h1>
 
     <div class="log">
-      <div><span class="ver">v1.3.0</span> <span class="date">2026-04-26</span> <span class="tag latest">[latest]</span></div>
+      <div><span class="ver">v1.3.1</span> <span class="date">2026-05-05</span> <span class="tag latest">[latest]</span></div>
+      <ul>
+        <li>frontend: <code>h1</code> headings now render with a <code>&gt; </code> terminal prompt prefix; active nav links show <code>&gt; </code> in green</li>
+        <li>frontend: section labels (<code>h2</code>) changed to uppercase small-caps style</li>
+        <li>frontend: table rows highlight on hover</li>
+        <li>frontend: SSH command blocks are now click-to-copy with a hover border and copied confirmation</li>
+        <li>frontend: blinking block cursor added to home page title</li>
+        <li>thief 5→6: fixed base64-encoded password having no trailing newline — decoded output now appears on its own line in the terminal</li>
+        <li>thief 6→7: fixed password file structure — x-padding now precedes the password so it is clearly on the last line; MOTD updated with <code>tail -1</code> hint</li>
+      </ul>
+    </div>
+
+    <div class="log">
+      <div><span class="ver">v1.3.0</span> <span class="date">2026-04-26</span> <span class="tag">[minor]</span></div>
       <ul>
         <li>challenges restructured into named games — first game: <strong>Thief</strong></li>
         <li>each game is fully self-contained under <code>games/&lt;name&gt;/</code> with its own Dockerfile, entrypoint, sshd_config, levels, and k8s manifests</li>

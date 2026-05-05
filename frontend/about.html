@@ -16,7 +16,7 @@
     <a href="/stack.html">Stack</a>
     <a href="/changelog.html">Changelog</a>
   </div>
-  <span style="color:#555">KRALI4</span>
+  <span class="topbar-logo">KRALI4</span>
 </div>
 
 <div id="wrap">
@@ -47,7 +47,10 @@
 
     <h2>How to connect</h2>
     <p>You need an SSH client. On Linux and macOS it's built in. On Windows, use PowerShell, Windows Terminal, or PuTTY.</p>
-    <pre style="color:#33dd33; background:#0a0a0a; padding:10px; border:1px solid #2a2a2a; font-size:13px;">ssh thief0@217.154.8.251 -p 30022</pre>
+    <div class="cmd-wrap">
+      <pre class="cmd-box">ssh thief0@217.154.8.251 -p 30022</pre>
+      <span class="copy-hint">click to copy</span>
+    </div>
     <p>The starting password is <code>thief0</code>. Everything after that you find yourself.</p>
 
     <p class="footer">krali4 · no account, no trace · server is always on</p>
@@ -55,5 +58,18 @@
   </div>
 </div>
 
+<script>
+  document.querySelectorAll('.cmd-box').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var hint = this.parentElement.querySelector('.copy-hint');
+      navigator.clipboard.writeText(this.textContent.trim()).then(function() {
+        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#33dd33'; }
+        setTimeout(function() {
+          if (hint) { hint.textContent = 'click to copy'; hint.style.color = ''; }
+        }, 1500);
+      });
+    });
+  });
+</script>
 </body>
 </html>

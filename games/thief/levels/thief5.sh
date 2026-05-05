@@ -5,7 +5,7 @@ NEXT_PASS="$2"
 
 echo "thief5:$MY_PASS" | chpasswd
 
-printf '%s' "$NEXT_PASS" | base64 > /home/thief5/encoded.txt
+echo "$NEXT_PASS" | base64 > /home/thief5/encoded.txt
 chown root:thief5 /home/thief5/encoded.txt
 chmod 044 /home/thief5/encoded.txt
 
