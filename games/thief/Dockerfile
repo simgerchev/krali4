@@ -5,9 +5,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     openssh-server \
     file \
+    gzip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN for i in $(seq 0 5); do useradd -m -s /bin/bash thief$i; done
+RUN for i in $(seq 0 9); do useradd -m -s /bin/bash thief$i; done
 
 RUN mkdir /var/run/sshd
 
