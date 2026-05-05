@@ -9,79 +9,63 @@
 <body>
 
 <div id="topbar">
-  <div>
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/games/thief.html" class="active">Games</a>
-    <a href="/stack.html">Stack</a>
-    <a href="/changelog.html">Changelog</a>
-  </div>
   <span class="topbar-logo">KRALI4</span>
+  <nav>
+    <a href="/index.html">home</a>
+    <a href="/about.html">about</a>
+    <a href="/games/" class="active">games</a>
+    <a href="/stack.html">stack</a>
+    <a href="/changelog.html">changelog</a>
+    <span class="online">● online</span>
+  </nav>
 </div>
 
-<div id="wrap">
+<div id="main">
 
-  <div id="sidebar">
-    <p>Pages</p>
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/stack.html">Stack</a>
-    <a href="/changelog.html">Changelog</a>
-    <p>Games</p>
-    <a href="/games/thief.html" class="active">Thief</a>
-    <p>Status</p>
-    <a href="#" style="color:#33dd33">● online</a>
+  <h1>Thief</h1>
+
+  <p>You've broken into a machine. Passwords are hidden across the filesystem — each one grants you access to the next user. Find them all and take the machine.</p>
+
+  <p>The game teaches fundamental Linux skills: reading files, handling unusual filenames, navigating directories, and identifying file types. No prior experience required — just a terminal and persistence.</p>
+
+  <h2 id="connect">Connect</h2>
+
+  <p style="margin-bottom:10px; color:#006600;">Open a terminal and run:</p>
+  <div class="cmd-wrap">
+    <pre id="connect-cmd" class="cmd-box"></pre>
+    <span class="copy-hint">click to copy</span>
   </div>
 
-  <div id="main">
+  <table>
+    <tr><td>host</td><td id="connect-host"></td></tr>
+    <tr><td>port</td><td>30022</td></tr>
+    <tr><td>user</td><td>thief0</td></tr>
+    <tr><td>pass</td><td>thief0</td></tr>
+  </table>
 
-    <h1>Thief</h1>
+  <h2>Levels</h2>
+  <table>
+    <tr><td>0 → 1</td><td>Read a file in the home directory</td></tr>
+    <tr><td>1 → 2</td><td>Read a file with spaces in its name</td></tr>
+    <tr><td>2 → 3</td><td>Find a hidden file inside a directory</td></tr>
+    <tr><td>3 → 4</td><td>Identify the only human-readable file among many</td></tr>
+    <tr><td>4 → 5</td><td>Find a specific line among hundreds in a file</td></tr>
+    <tr><td>5 → 6</td><td>Decode a base64-encoded string</td></tr>
+    <tr><td>6 → 7</td><td>Locate a file by size across nested directories</td></tr>
+    <tr><td>7 → 8</td><td>Decompress a gzip file to read its contents</td></tr>
+    <tr><td>8 → 9</td><td>Find the unique line in a file full of duplicates</td></tr>
+  </table>
 
-    <p>You've broken into a machine. Passwords are hidden across the filesystem — each one grants you access to the next user. Find them all and take the machine.</p>
+  <h2>Rules</h2>
+  <table>
+    <tr><td>shared server</td><td>All players connect to the same machine. Passwords reset on every server restart.</td></tr>
+    <tr><td>no spoilers</td><td>Passwords change each run — sharing answers doesn't help.</td></tr>
+    <tr><td>read-only</td><td>Challenge files are owned by root. You can read them, not delete them.</td></tr>
+    <tr><td>no account</td><td>No registration. SSH in and start playing.</td></tr>
+  </table>
 
-    <p>The game teaches fundamental Linux skills: reading files, handling unusual filenames, navigating directories, and identifying file types. No prior experience required — just a terminal and persistence.</p>
+  <p class="footer">krali4 · no account · no trace · always on</p>
 
-    <h2 id="connect">How to connect</h2>
-
-    <p style="color:#888; margin-bottom:6px;">Open a terminal and run:</p>
-    <div class="cmd-wrap">
-      <pre id="connect-cmd" class="cmd-box"></pre>
-      <span class="copy-hint">click to copy</span>
-    </div>
-
-    <table style="margin-top:8px;">
-      <tr><td>host</td><td id="connect-host" style="color:#bbb; padding-left:12px;"></td></tr>
-      <tr><td>port</td><td style="color:#bbb; padding-left:12px;">30022</td></tr>
-      <tr><td>username</td><td style="color:#bbb; padding-left:12px;">thief0</td></tr>
-      <tr><td>password</td><td style="color:#bbb; padding-left:12px;">thief0</td></tr>
-    </table>
-
-    <p style="margin-top:10px; color:#555; font-size:11px;">Once inside, find the password for the next user. SSH in as them and keep going.</p>
-
-    <h2>Levels</h2>
-    <table>
-      <tr><td>0 → 1</td><td>Read a file in the home directory</td></tr>
-      <tr><td>1 → 2</td><td>Read a file with spaces in its name</td></tr>
-      <tr><td>2 → 3</td><td>Find a hidden file inside a directory</td></tr>
-      <tr><td>3 → 4</td><td>Identify the only human-readable file among many</td></tr>
-      <tr><td>4 → 5</td><td>Find a specific line among hundreds in a file</td></tr>
-      <tr><td>5 → 6</td><td>Decode a base64-encoded string</td></tr>
-      <tr><td>6 → 7</td><td>Locate a file by size across nested directories</td></tr>
-      <tr><td>7 → 8</td><td>Decompress a gzip file to read its contents</td></tr>
-      <tr><td>8 → 9</td><td>Find the unique line in a file full of duplicates</td></tr>
-    </table>
-
-    <h2>Rules</h2>
-    <table>
-      <tr><td>shared server</td><td>All players connect to the same machine. Passwords reset on every server restart.</td></tr>
-      <tr><td>no spoilers</td><td>Passwords change each run — sharing answers doesn't help.</td></tr>
-      <tr><td>read-only</td><td>Challenge files are owned by root. You can read them, not delete them.</td></tr>
-      <tr><td>no account</td><td>No registration. SSH in and start playing.</td></tr>
-    </table>
-
-    <p class="footer">krali4 · no account, no trace · server is always on</p>
-
-  </div>
 </div>
 
 <script>
@@ -94,7 +78,7 @@
     el.addEventListener('click', function() {
       var hint = this.parentElement.querySelector('.copy-hint');
       navigator.clipboard.writeText(this.textContent.trim()).then(function() {
-        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#33dd33'; }
+        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#00ff41'; }
         setTimeout(function() {
           if (hint) { hint.textContent = 'click to copy'; hint.style.color = ''; }
         }, 1500);

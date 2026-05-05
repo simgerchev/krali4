@@ -23,4 +23,4 @@ PrintMotd yes
 Banner /etc/ssh/banner
 
 # Only allow thief users
-AllowUsers thief0 thief1 thief2 thief3 thief4 thief5
+AllowUsers thief0 thief1 thief2 thief3 thief4 thief5 thief6 thief7 thief8 thief9

@@ -9,71 +9,56 @@
 <body>
 
 <div id="topbar">
-  <div>
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/games/thief.html">Games</a>
-    <a href="/stack.html" class="active">Stack</a>
-    <a href="/changelog.html">Changelog</a>
-  </div>
   <span class="topbar-logo">KRALI4</span>
+  <nav>
+    <a href="/index.html">home</a>
+    <a href="/about.html">about</a>
+    <a href="/games/">games</a>
+    <a href="/stack.html" class="active">stack</a>
+    <a href="/changelog.html">changelog</a>
+    <span class="online">● online</span>
+  </nav>
 </div>
 
-<div id="wrap">
+<div id="main">
 
-  <div id="sidebar">
-    <p>Pages</p>
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/stack.html" class="active">Stack</a>
-    <a href="/changelog.html">Changelog</a>
-    <p>Games</p>
-    <a href="/games/thief.html">Thief</a>
-    <p>Status</p>
-    <a href="#" style="color:#33dd33">● online</a>
-  </div>
+  <h1>Stack</h1>
 
-  <div id="main">
+  <h2>Challenge server</h2>
+  <table>
+    <tr><td>Ubuntu 22.04</td><td>base image</td></tr>
+    <tr><td>OpenSSH server</td><td>players connect via SSH on port 30022</td></tr>
+    <tr><td>Linux users</td><td>one user per level per game, each with a separate home directory</td></tr>
+    <tr><td>Random passwords</td><td>generated fresh on every container start</td></tr>
+    <tr><td>Level scripts</td><td>one <code>.sh</code> script per level — challenge files, permissions, hints</td></tr>
+  </table>
 
-    <h1>Stack</h1>
+  <h2>Infrastructure</h2>
+  <table>
+    <tr><td>Kubernetes (k3s)</td><td>single-node cluster on a VPS — always-on challenge deployment</td></tr>
+    <tr><td>nginx</td><td>serves the frontend as a baked Docker image</td></tr>
+    <tr><td>Traefik</td><td>ingress controller with automatic TLS via Let's Encrypt</td></tr>
+    <tr><td>GitLab CI</td><td>builds both images in parallel, deploys to k8s on push to main</td></tr>
+  </table>
 
-    <h2>Challenge server</h2>
-    <table>
-      <tr><td>Ubuntu 22.04</td><td>base image</td></tr>
-      <tr><td>OpenSSH server</td><td>players connect via SSH on port 30022</td></tr>
-      <tr><td>Linux users</td><td>one user per level per game, each with a separate home directory</td></tr>
-      <tr><td>Random passwords</td><td>generated fresh on every container start</td></tr>
-      <tr><td>Level scripts</td><td>one <code>.sh</code> script per level — challenge files, permissions, hints</td></tr>
-    </table>
+  <h2>Security</h2>
+  <table>
+    <tr><td>cap_drop ALL</td><td>only required capabilities added back</td></tr>
+    <tr><td>no-new-privileges</td><td>processes can't escalate beyond their starting privileges</td></tr>
+    <tr><td>resource limits</td><td>0.5 CPU · 256 MB RAM at the pod level</td></tr>
+    <tr><td>ulimits</td><td>per-user: max 30 processes, 50 MB writes, 5 min CPU time</td></tr>
+    <tr><td>egress blocked</td><td>NetworkPolicy denies all outbound traffic from the challenge pod</td></tr>
+    <tr><td>read-only files</td><td>challenge files owned by root — players can read, not delete</td></tr>
+  </table>
 
-    <h2>Infrastructure</h2>
-    <table>
-      <tr><td>Kubernetes (k3s)</td><td>single-node cluster on a VPS — always-on challenge deployment</td></tr>
-      <tr><td>nginx</td><td>serves the frontend as a baked Docker image</td></tr>
-      <tr><td>Traefik</td><td>ingress controller with automatic TLS via Let's Encrypt</td></tr>
-      <tr><td>GitLab CI</td><td>builds both images in parallel, deploys to k8s on push to main</td></tr>
-    </table>
+  <h2>Frontend</h2>
+  <table>
+    <tr><td>Vanilla JS</td><td>no frameworks</td></tr>
+    <tr><td>HTML / CSS</td><td>monospace, dark theme</td></tr>
+  </table>
 
-    <h2>Security</h2>
-    <table>
-      <tr><td>cap_drop ALL</td><td>only required capabilities added back</td></tr>
-      <tr><td>no-new-privileges</td><td>processes can't escalate beyond their starting privileges</td></tr>
-      <tr><td>resource limits</td><td>0.5 CPU · 256 MB RAM at the pod level</td></tr>
-      <tr><td>ulimits</td><td>per-user: max 30 processes, 50 MB writes, 5 min CPU time</td></tr>
-      <tr><td>egress blocked</td><td>NetworkPolicy denies all outbound traffic from the challenge pod</td></tr>
-      <tr><td>read-only files</td><td>challenge files owned by root — players can read, not delete</td></tr>
-    </table>
+  <p class="footer">krali4 · no account · no trace · always on</p>
 
-    <h2>Frontend</h2>
-    <table>
-      <tr><td>Vanilla JS</td><td>no frameworks</td></tr>
-      <tr><td>HTML / CSS</td><td>monospace, dark theme</td></tr>
-    </table>
-
-    <p class="footer">krali4 · no account, no trace · server is always on</p>
-
-  </div>
 </div>
-
 </body>
 </html>

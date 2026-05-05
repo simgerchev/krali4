@@ -9,66 +9,50 @@
 <body>
 
 <div id="topbar">
-  <div>
-    <a href="/index.html" class="active">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/games/thief.html">Games</a>
-    <a href="/stack.html">Stack</a>
-    <a href="/changelog.html">Changelog</a>
-  </div>
   <span class="topbar-logo">KRALI4</span>
+  <nav>
+    <a href="/index.html" class="active">home</a>
+    <a href="/about.html">about</a>
+    <a href="/games/">games</a>
+    <a href="/stack.html">stack</a>
+    <a href="/changelog.html">changelog</a>
+    <span class="online">● online</span>
+  </nav>
 </div>
 
-<div id="wrap">
+<div id="main">
 
-  <div id="sidebar">
-    <p>Pages</p>
-    <a href="/index.html" class="active">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/stack.html">Stack</a>
-    <a href="/changelog.html">Changelog</a>
-    <p>Games</p>
-    <a href="/games/thief.html">Thief</a>
-    <p>Status</p>
-    <a href="#" style="color:#33dd33">● online</a>
+  <h1>KRALI4<span class="cursor"></span></h1>
+
+  <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:180px; margin-bottom:22px; filter:grayscale(100%) opacity(0.65);" />
+
+  <p>An SSH wargame platform. Each game is a self-contained series of levels — connect via SSH, find a hidden password, unlock the next user, repeat.</p>
+
+  <h2>Games</h2>
+  <table>
+    <tr>
+      <td><a href="/games/thief.html">Thief</a></td>
+      <td>9 levels · Linux file navigation · find hidden passwords across the filesystem</td>
+    </tr>
+  </table>
+
+  <h2 id="connect">Connect</h2>
+
+  <p style="margin-bottom:10px; color:#006600;">Open a terminal and SSH in as the first user:</p>
+  <div class="cmd-wrap">
+    <pre id="connect-cmd" class="cmd-box"></pre>
+    <span class="copy-hint">click to copy</span>
   </div>
 
-  <div id="main">
+  <table>
+    <tr><td>host</td><td id="connect-host"></td></tr>
+    <tr><td>port</td><td>30022</td></tr>
+    <tr><td>user</td><td>thief0</td></tr>
+    <tr><td>pass</td><td>thief0</td></tr>
+  </table>
 
-    <h1>KRALI4<span class="cursor"></span></h1>
+  <p class="footer">krali4 · no account · no trace · always on</p>
 
-    <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:200px; margin-bottom:14px; filter:grayscale(100%);" />
-
-    <p>An SSH wargame platform. Each game is a self-contained series of levels — connect via SSH, find a hidden password, unlock the next user, repeat.</p>
-
-    <h2>Games</h2>
-    <table>
-      <tr>
-        <td><a href="/games/thief.html">Thief</a></td>
-        <td>5 levels · Linux file navigation · find hidden passwords across the filesystem</td>
-      </tr>
-    </table>
-
-    <h2 id="connect">How to connect</h2>
-
-    <p style="color:#888; margin-bottom:6px;">Pick a game, then open a terminal and SSH in as the first user:</p>
-    <div class="cmd-wrap">
-      <pre id="connect-cmd" class="cmd-box"></pre>
-      <span class="copy-hint">click to copy</span>
-    </div>
-
-    <table style="margin-top:8px;">
-      <tr><td>host</td><td id="connect-host" style="color:#bbb; padding-left:12px;"></td></tr>
-      <tr><td>port</td><td style="color:#bbb; padding-left:12px;">30022</td></tr>
-      <tr><td>username</td><td style="color:#bbb; padding-left:12px;">thief0</td></tr>
-      <tr><td>password</td><td style="color:#bbb; padding-left:12px;">thief0</td></tr>
-    </table>
-
-    <p style="margin-top:10px; color:#555; font-size:11px;">Passwords for higher levels are hidden on the machine. Find one, SSH in as the next user, repeat.</p>
-
-    <p class="footer">krali4 · no account, no trace · server is always on</p>
-
-  </div>
 </div>
 
 <script>
@@ -81,7 +65,7 @@
     el.addEventListener('click', function() {
       var hint = this.parentElement.querySelector('.copy-hint');
       navigator.clipboard.writeText(this.textContent.trim()).then(function() {
-        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#33dd33'; }
+        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#00ff41'; }
         setTimeout(function() {
           if (hint) { hint.textContent = 'click to copy'; hint.style.color = ''; }
         }, 1500);
