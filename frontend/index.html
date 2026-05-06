@@ -24,7 +24,22 @@
 
   <h1>KRALI4<span class="cursor"></span></h1>
 
-  <img src="https://myfavoritewesterns.com/wp-content/uploads/2018/07/zorro-tyrone-power-the-mark-of-zorro-mask.jpg" alt="krali4" style="display:block; width:180px; margin-bottom:22px; filter:grayscale(100%) opacity(0.65);" />
+  <pre style="margin:0 0 22px; color:#555; line-height:1.2;">                     __.-----.._
+                _._-'           `-.
+             .-'    `- - .         \
+            /              '        `.
+           /                          \
+           |                '          |
+           |             .' /          |
+          /;            /   |         /
+          +=,_         :   /         /
+          \  \T| =_    |            /
+          V\  |   ""=W \.          /
+           "|/|       V \_     __)'            
+            \W'    --.,   ` _."
+            |;           /F"
+            /        _'="
+            `^-Y_Y_;-'</pre>
 
   <p>An SSH wargame platform. Each game is a self-contained series of levels — connect via SSH, find a hidden password, unlock the next user, repeat.</p>
 
@@ -38,7 +53,7 @@
 
   <h2 id="connect">Connect</h2>
 
-  <p style="margin-bottom:10px; color:#006600;">Open a terminal and SSH in as the first user:</p>
+  <p style="margin-bottom:10px; color:#666;">Open a terminal and SSH in as the first user:</p>
   <div class="cmd-wrap">
     <pre id="connect-cmd" class="cmd-box"></pre>
     <span class="copy-hint">click to copy</span>
@@ -65,7 +80,7 @@
     el.addEventListener('click', function() {
       var hint = this.parentElement.querySelector('.copy-hint');
       navigator.clipboard.writeText(this.textContent.trim()).then(function() {
-        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#00ff41'; }
+        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#fff'; }
         setTimeout(function() {
           if (hint) { hint.textContent = 'click to copy'; hint.style.color = ''; }
         }, 1500);

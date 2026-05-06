@@ -31,10 +31,10 @@ body {
   align-items: center;
 }
 
-#topbar #promptPreview { color: #33dd33; }
+#topbar #promptPreview { color: #fff; }
 
 #connectionBadge { color: #555; }
-#connectionBadge[data-connected="true"] { color: #33dd33; }
+#connectionBadge[data-connected="true"] { color: #fff; }
 
 #connectionMeta, #connectionUptime { color: #444; }
 
@@ -63,7 +63,7 @@ body {
 .entry a { color: #8ab4d4; }
 
 .prompt {
-  color: #33dd33;
+  color: #fff;
   margin-right: 6px;
 }
 
@@ -78,7 +78,7 @@ body {
 }
 
 #promptLabel {
-  color: #33dd33;
+  color: #fff;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -91,7 +91,7 @@ body {
   color: #ccc;
   font-family: "Courier New", monospace;
   font-size: 13px;
-  caret-color: #33dd33;
+  caret-color: #fff;
 }
 
 /* ── STATUS BAR ── */
@@ -132,7 +132,7 @@ body {
 
   /* shorten prompt to just $ to give the input more room */
   #promptLabel { font-size: 0; }
-  #promptLabel::after { content: "$"; font-size: 16px; color: #33dd33; }
+  #promptLabel::after { content: "$"; font-size: 16px; color: #fff; }
 
   .entry { font-size: 12px; line-height: 1.4; }
 }
