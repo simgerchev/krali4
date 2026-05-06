@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -v 'chpasswd\\\\|PasswordAuthentication\\\\|NEXT_PASS\\\\|MY_PASS\\\\|gen_pass\\\\|thief.*pass\\\\|pass.*thief\\\\|no_account\\\\|password: \\\\$\\\\|password is\\\\|password for\\\\|password.*hidden\\\\|hidden.*password\\\\|starting password\\\\|next.*password\\\\|#.*pass')",
+      "Bash(gh auth *)"
+    ]
+  }
+}
