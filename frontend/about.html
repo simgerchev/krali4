@@ -16,6 +16,7 @@
     <a href="/games/">games</a>
     <a href="/stack.html">stack</a>
     <a href="/changelog.html">changelog</a>
+    <a href="https://github.com/simgerchev/krali4" target="_blank">github</a>
     <span class="online">● online</span>
   </nav>
 </div>
@@ -49,7 +50,7 @@
     el.addEventListener('click', function() {
       var hint = this.parentElement.querySelector('.copy-hint');
       navigator.clipboard.writeText(this.textContent.trim()).then(function() {
-        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#00ff41'; }
+        if (hint) { hint.textContent = 'copied!'; hint.style.color = '#fff'; }
         setTimeout(function() {
           if (hint) { hint.textContent = 'click to copy'; hint.style.color = ''; }
         }, 1500);

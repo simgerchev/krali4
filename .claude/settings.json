@@ -3,7 +3,10 @@
     "allow": [
       "Bash(grep -v 'chpasswd\\\\|PasswordAuthentication\\\\|NEXT_PASS\\\\|MY_PASS\\\\|gen_pass\\\\|thief.*pass\\\\|pass.*thief\\\\|no_account\\\\|password: \\\\$\\\\|password is\\\\|password for\\\\|password.*hidden\\\\|hidden.*password\\\\|starting password\\\\|next.*password\\\\|#.*pass')",
       "Bash(gh auth *)",
-      "Bash(git -C /home/joe/pers-files/repositories/krali4 remote -v)"
+      "Bash(git -C /home/joe/pers-files/repositories/krali4 remote -v)",
+      "Bash(git -C /home/joe/pers-files/repositories/krali4 status)",
+      "Bash(git -C /home/joe/pers-files/repositories/krali4 diff --stat)",
+      "Bash(git -C /home/joe/pers-files/repositories/krali4 log --oneline -5)"
     ]
   }
 }
